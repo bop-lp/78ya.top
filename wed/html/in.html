@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朝歌夜弦的博客</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* 防止水平滚动条 */
+        }
+
+        /* 视频背景 */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* 头部样式 */
+        header {
+            background-color: rgba(255, 127, 80, 0.8);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: -10px; /* 消除阴影间隔 */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* 主要内容区域 */
+        main {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            width: calc(100% - 15%); /* 基于父容器宽度自适应 */
+            max-width: none; /* 取消最大宽度限制 */
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            margin-top: 10px; /* 减少与头部的间距 */
+            transition: width 0.3s ease; /* 添加窗口变化过渡 */
+        }
+
+        /* 游戏图片展示 */
+        .game-images {
+            text-align: center;
+        }
+
+        .game-images h2 {
+            margin-bottom: 20px;
+        }
+
+        .game-images img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            border: 2px solid #ff7f50;
+            margin: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .game-images img:hover {
+            transform: scale(1.1);
+        }
+
+        /* 底部样式 */
+        footer {
+            background-color: rgba(255, 127, 80, 0.8);
+            padding: 10px;
+            color: white;
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-item img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .footer-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-item a:hover {
+            opacity: 0.8;
+        }
+
+        .friendship-links {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 视频背景 -->
+    <video id="video-background" autoplay muted loop>
+        <source src="mp4/wallpaper.mp4" type="video/mp4">
+        您的浏览器不支持视频标签。
+    </video>
+
+    <!-- 头部 -->
+    <header>
+        <h1>朝歌夜弦</h1> <!-- 修改后的标题 -->
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <div class="game-images">
+            <h2>游戏图片展示</h2>
+            <div>
+                <img src="images/game1.jpg" alt="游戏图片1">
+                <img src="images/game2.jpg" alt="游戏图片2">
+                <img src="images/game3.jpg" alt="游戏图片3">
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer id="footer">
+        <div class="friendship-links">友情链接</div>
+        <div class="footer-content">
+            <!-- GitHub -->
+            <div class="footer-item">
+                <a href="https://github.com/bop-lp" target="_blank">
+                    <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub">
+                    GitHub
+                </a>
+            </div>
+
+            <!-- ICP备案 -->
+            <div class="footer-item">
+                <a href="https://beian.miit.gov.cn" target="_blank">
+                    <img src="https://www.miit.gov.cn/favicon.ico" alt="工信部备案">
+                    琼ICP备00000
+                </a>
+            </div>
+
+            <!-- 邮箱 -->
+            <div class="footer-item">
+                <img src="https://mail.qq.com/favicon.ico" alt="QQ邮箱">
+                <a href="mailto:bop-lp@qq.com">bop-lp@qq.com</a>
+            </div>
+
+            <!-- 服务器运行时长 -->
+            <div class="footer-item">
+                <img src="https://img.icons8.com/ios-filled/50/000000/clock--v1.png" alt="时间图标">
+                <span id="runtime">加载中...</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 获取服务器运行时长
+        async function fetchServerRuntime() {
+            try {
+                const response = await fetch('api/serverRunTime');
+                if (!response.ok) throw new Error('请求失败');
+                const data = await response.json();
+                const startTime = data.timestamp; // 假设返回的时间戳字段为 timestamp
+                updateRuntime(startTime);
+            } catch (error) {
+                console.error('请求失败:', error);
+                showCurrentTime();
+            }
+        }
+
+        // 更新运行时长
+        function updateRuntime(startTime) {
+            const runtimeElement = document.getElementById('runtime');
+            setInterval(() => {
+                const now = Math.floor(Date.now() / 1000); // 当前时间戳（秒）
+                const runtime = now - startTime; // 运行时长（秒）
+                const hours = Math.floor(runtime / 3600); // 转换为小时
+                const minutes = Math.floor((runtime % 3600) / 60); // 转换为分钟
+                const seconds = runtime % 60; // 转换为秒
+                runtimeElement.textContent = `${hours}时 ${minutes}分 ${seconds}秒`;
+            }, 1000);
+        }
+
+        // 显示当前时间
+        function showCurrentTime() {
+            const runtimeElement = document.getElementById('runtime');
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            runtimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // 初始化
+        fetchServerRuntime();
+    </script>
+</body>
+</html>
