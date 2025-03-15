@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- index.html -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朝歌夜弦的博客</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="{{ url_for('static', filename='mp4/wallpaper.mp4') }}" type="video/mp4">
+    </video>
+
+    <header>
+        <div class="header-wrapper">
+            <h1>朝歌夜弦的博客</h1>
+            <div class="motto" id="animatedMotto"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="daily-quote" id="dailyQuote">加载每日一言中...</div>
+
+        <div class="game-images">
+            <h2>游戏展示</h2>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/game1.jpg') }}" alt="a1">
+                <img src="{{ url_for('static', filename='images/game2.jpg') }}" alt="a2">
+                <img src="{{ url_for('static', filename='images/game3.jpg') }}" alt="a3">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="friendship-links">友情链接</div>
+        <div class="footer-content">
+            <div class="footer-item">
+                <a href="https://github.com/bop-lp" target="_blank">
+                    <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub">
+                    GitHub
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="https://beian.miit.gov.cn" target="_blank">
+                    <img src="https://www.miit.gov.cn/favicon.ico" alt="工信部备案">
+                    琼ICP备2025051221
+                </a>
+            </div>
+            <div class="footer-item">
+                <img src="https://mail.qq.com/favicon.ico" alt="QQ邮箱">
+                <a href="mailto:bop-lp@qq.com">bop-lp@qq.com</a>
+            </div>
+            <div class="footer-item">
+                <img src="https://img.icons8.com/ios-filled/50/000000/clock--v1.png" alt="时间图标">
+                <span id="runtime"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
