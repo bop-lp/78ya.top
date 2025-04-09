@@ -50,25 +50,7 @@ def run(flaskApp):
 
     @root_wed.wrapper("/")
     def root():
-        return render_template("index.html")
-
-    @root_wed.wrapper("/posts")
-    def posts():
-        return '200'
-
-    @root_wed.wrapper("/posts/<slug>")
-    def show_post(slug):
-        post_path = POSTS_DIR / f"{slug}.md"
-        if not post_path.exists():
-            return "文章不存在", 404
-
-        post = Post(post_path)
-        post.title = slug
-        return render_template("post.html", post=post)
-
-    @root_wed.wrapper("/api/dmyiyan/api")
-    def dmyiyan_api():
-        return "你好世界", 200
+        return render_template("login.html")
 
 
 flaskApp = getAppRegister("FlaskApp")
@@ -79,4 +61,3 @@ if not flaskApp is None:
         print(f"Error: {e}")
         # rich.print(inspectKB.stack())/
 
-print("fileMapping is running.")

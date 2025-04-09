@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>朝歌夜弦的博客</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
 </head>
 <body>
     <video id="video-background" autoplay muted loop>
@@ -31,32 +32,7 @@
             </div>
         </div>
     </main>
-
-    <footer>
-        <div class="friendship-links">友情链接</div>
-        <div class="footer-content">
-            <div class="footer-item">
-                <a href="https://github.com/bop-lp" target="_blank">
-                    <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub">
-                    GitHub
-                </a>
-            </div>
-            <div class="footer-item">
-                <a href="https://beian.miit.gov.cn" target="_blank">
-                    <img src="https://www.miit.gov.cn/favicon.ico" alt="工信部备案">
-                    琼ICP备2025051221
-                </a>
-            </div>
-            <div class="footer-item">
-                <img src="https://mail.qq.com/favicon.ico" alt="QQ邮箱">
-                <a href="mailto:bop-lp@qq.com">bop-lp@qq.com</a>
-            </div>
-            <div class="footer-item">
-                <img src="https://img.icons8.com/ios-filled/50/000000/clock--v1.png" alt="时间图标">
-                <span id="runtime"></span>
-            </div>
-        </div>
-    </footer>
+    {% include "includes/footer.html" %}
 
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>

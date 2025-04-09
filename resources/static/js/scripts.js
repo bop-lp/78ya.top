@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchDailyQuote = async () => {
         const quoteElement = document.getElementById('dailyQuote');
         try {
-            const response = await fetch('https://api.lolimi.cn/API/dmyiyan/api.php');
+            const response = await fetch('/api/dmyiyan/api');
             const text = await response.text();
 
             if (text && text.trim().length > 0) {
@@ -74,9 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter('「代码如诗，算法似歌」—— 这里分享编程艺术、技术洞见与数字世界的奇妙旅程',
         document.getElementById('animatedMotto'));
 
-    showCurrentTime();
+
     fetchDailyQuote();
     adaptImages();
+//    showCurrentTime();
+
     // # 可以在这里添加更多功能
 
 });

@@ -20,6 +20,7 @@ config = deep_update(configConvertTodict(config), File.public["config"].get("fla
 template_folder = config["template_folder"]
 static_folder = config["static_folder"]
 
+
 app = Flask(config["flaskAppName"], template_folder=template_folder, static_folder=static_folder)
 app.response_class = CustomResponse
 
