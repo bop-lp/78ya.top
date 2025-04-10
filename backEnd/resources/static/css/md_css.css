@@ -1,0 +1,83 @@
+/* 添加全屏样式 */
+.md-image.fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+
+
+/* 基础图片样式 */
+.markdown-content img {
+    /* 基础尺寸：父容器宽度减20px（两侧各留10px边距） */
+    max-width: calc(100% - 20px); /* 关键调整点：初始化减少20px宽度 */
+    width: auto;
+    height: auto;
+    margin: 10px auto; /* 垂直间距10px，水平居中 */
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+/* 鼠标悬停效果 */
+.markdown-content img:hover {
+    transform: scale(1.1) rotate(0.5deg); /* 轻微旋转增强立体感 */
+    box-shadow: 0 12px 25px rgba(255, 127, 80, 0.2); /* 主题色投影 */
+}
+
+/* 防止父容器溢出 */
+.markdown-content {
+    overflow: hidden; /* 关键属性 */
+    padding: 5px;     /* 给放大留出空间 */
+}
+
+@media (max-width: 768px) {
+    .markdown-content img {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (hover: none) {
+    .markdown-content img:hover {
+        transform: none; /* 禁用移动端悬停效果 */
+    }
+}
+
+.markdown-content img.active {
+    transform: scale(1.5) !important;
+    z-index: 100;
+    cursor: zoom-out;
+}
+
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* 备用flex方案 */
+@supports not (display: grid) {
+    .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .image-container img {
+        margin: 7.5px; /* 兼容gap */
+    }
+}
+
+.image-container img {
+    transition: all 0.3s ease;
+    object-fit: contain; /* 保持比例 */
+    max-width: 100%; /* 安全限制 */
+}

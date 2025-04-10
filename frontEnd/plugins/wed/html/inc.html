@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>码上弦歌的博客</title>
+    <style>
+        /* 新增样式 */
+        .blog-intro {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* 游戏图片容器优化 */
+        .game-images div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* 保持原有其他样式... */
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <h1>码上弦歌</h1> <!-- 修改后的技术风格标题 -->
+    </header>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 新增简介文字 -->
+        <div class="blog-intro">
+            「代码如诗，算法似歌」—— 这里分享编程艺术、技术洞见与数字世界的奇妙旅程
+        </div>
+
+        <!-- 游戏图片展示 -->
+        <div class="game-images">
+            <h2>项目展示</h2> <!-- 更技术化的标题 -->
+            <div>
+                <img src="images/game1.jpg" alt="分布式系统可视化">
+                <img src="images/game2.jpg" alt="机器学习交互演示">
+                <img src="images/game3.jpg" alt="三维算法可视化">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 图片等比缩放函数
+        function adaptiveImageScaling() {
+            const containerWidth = document.querySelector('.game-images div').offsetWidth;
+            const images = document.querySelectorAll('.game-images img');
+
+            images.forEach(img => {
+                img.onload = function() {
+                    const aspectRatio = this.naturalWidth / this.naturalHeight;
+                    const maxDisplayWidth = containerWidth * 0.25; // 每行显示4张图片
+
+                    // 动态计算显示尺寸
+                    const displayWidth = Math.min(
+                        maxDisplayWidth,
+                        aspectRatio > 1 ? maxDisplayWidth : maxDisplayWidth * aspectRatio
+                    );
+
+                    const displayHeight = displayWidth / aspectRatio;
+
+                    this.style.width = `${displayWidth}px`;
+                    this.style.height = `${displayHeight}px`;
+                }
+
+                // 触发已缓存图片的加载事件
+                if (img.complete) img.dispatchEvent(new Event('load'));
+            });
+
+            // 窗口变化监听
+            window.addEventListener('resize', () => {
+                images.forEach(img => img.dispatchEvent(new Event('load')));
+            });
+        }
+
+        // 初始化图片缩放
+        adaptiveImageScaling();
+
+        /* 保持原有时间相关代码... */
+    </script>
+</body>
+</html>

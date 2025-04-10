@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% set title = post.title %}
+
+{% block content %}
+<article class="markdown-content" id="image-container">
+<!--    <header class="post-header">-->
+<!--        <h1>{{ post.title }}</h1>-->
+<!--        <time>{{ post.date.strftime("%Y-%m-%d") }}</time>-->
+<!--    </header>-->
+    {{ post.content|safe }}
+</article>
+{% endblock %}

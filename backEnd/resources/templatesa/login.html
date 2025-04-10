@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 朝歌夜弦的博客</title>
+    <style>
+        /* 复用博客主样式 */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff5f5;
+            overflow-x: hidden;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* 登录容器 */
+        .login-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 127, 80, 0.2);
+        }
+
+        /* 表单元素 */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff4500;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff7f50;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff4500;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
+        }
+
+        /* 错误提示样式 */
+        .form-group.error .form-input {
+            border-color: #ff4500;
+            box-shadow: 0 0 8px rgba(255, 69, 0, 0.3);
+        }
+
+        .error-message {
+            color: #ff4500;
+            font-size: 0.9em;
+            margin-top: 5px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 登录按钮 */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #ff7f50, #ff4500);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        /* 底部链接 */
+        .bottom-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .bottom-links a {
+            color: #ff4500;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                margin: 50px auto;
+                padding: 20px;
+            }
+
+            #video-background {
+                display: none;
+            }
+
+            body {
+                background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="mp4/wallpaper.mp4" type="video/mp4">
+    </video>
+
+    <div class="login-container">
+        <h2 style="text-align: center; color: #ff4500; margin-bottom: 30px;">欢迎登录</h2>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="username">用户名</label>
+                <input
+                    type="text"
+                    id="username"
+                    class="form-input"
+                    placeholder="4-16位字母/数字/下划线"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">密码</label>
+                <input
+                    type="password"
+                    id="password"
+                    class="form-input"
+                    placeholder="6-18位字母+数字组合"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-btn">立即登录</button>
+        </form>
+
+        <div class="bottom-links">
+            <a href="#">忘记密码？</a>
+            <a href="#">注册账号</a>
+        </div>
+    </div>
+
+    <script>
+        // 校验规则配置
+        const validationRules = {
+            username: {
+                pattern: /^[a-zA-Z0-9_]{4,16}$/,
+                message: '用户名应为4-16位字母、数字或下划线'
+            },
+            password: {
+                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,18}$/,
+                message: '密码需包含字母和数字（6-18位）'
+            }
+        };
+
+        // 显示错误信息
+        function showError(input, message) {
+            const formGroup = input.parentElement;
+            formGroup.classList.add('error');
+
+            // 防止重复添加错误信息
+            let error = formGroup.querySelector('.error-message');
+            if (!error) {
+                error = document.createElement('div');
+                error.className = 'error-message';
+                formGroup.appendChild(error);
+            }
+            error.textContent = message;
+        }
+
+        // 清除错误状态
+        function clearError(input) {
+            const formGroup = input.parentElement;
+            formGroup.classList.remove('error');
+
+            const error = formGroup.querySelector('.error-message');
+            if (error) error.remove();
+        }
+
+        // 实时输入校验
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const rule = validationRules[this.id];
+                if (rule) {
+                    if (this.value && !rule.pattern.test(this.value)) {
+                        showError(this, rule.message);
+                    } else {
+                        clearError(this);
+                    }
+                }
+            });
+        });
+
+        // 表单提交处理
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            // 验证所有字段
+            Object.keys(validationRules).forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                const rule = validationRules[fieldId];
+
+                if (!rule.pattern.test(input.value)) {
+                    showError(input, rule.message);
+                    isValid = false;
+                } else {
+                    clearError(input);
+                }
+            });
+
+            // 通过验证后的处理
+            if (isValid) {
+                alert('表单验证通过，正在跳转...');
+                // 此处可添加实际的登录逻辑
+                this.reset();
+            }
+        });
+
+        // 输入框动态效果
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
