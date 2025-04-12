@@ -7,6 +7,7 @@
     <title>朝歌夜弦的博客</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/content.css') }}">
 </head>
 <body>
     <video id="video-background" autoplay muted loop>
@@ -20,20 +21,24 @@
         </div>
     </header>
 
-    <main>
-        <div class="daily-quote" id="dailyQuote">加载每日一言中...</div>
+<!--    <main>-->
+<!--        <div class="daily-quote" id="dailyQuote">加载每日一言中...</div>-->
 
-        <div class="game-images">
-            <h2>游戏展示</h2>
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='images/game1.jpg') }}" alt="a1">
-                <img src="{{ url_for('static', filename='images/game2.jpg') }}" alt="a2">
-                <img src="{{ url_for('static', filename='images/game3.jpg') }}" alt="a3">
-            </div>
-        </div>
-    </main>
+<!--        <div class="game-images">-->
+<!--            <h2>游戏展示</h2>-->
+<!--            <div class="image-container">-->
+<!--                <img src="{{ url_for('static', filename='images/game1.jpg') }}" alt="a1">-->
+<!--                <img src="{{ url_for('static', filename='images/game2.jpg') }}" alt="a2">-->
+<!--                <img src="{{ url_for('static', filename='images/game3.jpg') }}" alt="a3">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </main>-->
+    {% include "includes/content.html" %}
     {% include "includes/footer.html" %}
 
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/content.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contentx.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
 </body>
 </html>

@@ -16,7 +16,13 @@ config = {
 }
 
 
-f = File(pathConversion(__file__, "plugins"), printLog=True, config=config)
+plugins = [
+    "plugins",
+    "..\\publicPlugins"
+]
+
+f = File([pathConversion(__file__, i) for i in plugins], printLog=True, config=config)
+# f = File(pathConversion(__file__, "plugins"), printLog=True, config=config)
 if __name__ == '__main__':
     f.runAll()
 
@@ -27,7 +33,7 @@ if __name__ == '__main__':
     # print(html.generated("test.md"))
 
     appRun = getAppRegister("AppRun")
-    appRun()
+    appRun(debug=True)
 
 
 

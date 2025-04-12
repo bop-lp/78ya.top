@@ -5,7 +5,7 @@ import markdown
 import frontmatter
 from datetime import datetime
 
-from flask import Flask, send_file, render_template
+from flask import Flask, send_file, render_template, make_response
 from flask import request
 from flask import jsonify
 
@@ -46,11 +46,36 @@ def run(flaskApp):
             return {"code": 405, "message": f"I only accept the method {method}."}
 
     root_wed = root("", interfaceInfo={"root": {"methods": "GET", "forms": {}}})
-    path = File.public.config.get("file", False)
+    # path = File.public.config.get("file", False)
+
+    @root_wed.wrapper("/posts/<slug>")
+    def show_post(slug):
+        post_path = POSTS_DIR / f"{slug}.md"
+        if not post_path.exists():
+            return "文章不存在", 404
+
+        post = Post(post_path)
+        post.title = slug
+        return render_template("post.html", post=post)
 
     @root_wed.wrapper("/")
     def root():
         return render_template("login.html")
+
+    @root_wed.wrapper("/md/list/<pages>")
+    def md_list(pages: int):
+        """
+
+        :param pages: 页数
+        :return: 返回 md html
+        """
+        response = make_response({"page": pages, "content": render_template("md_list.html")})
+        response.headers.add('Access-Control-Allow-Origin', '*')  # 允许所有来源访问
+        response.headers.add('Access-Control-Allow-Methods', 'GET, POST')  # 允许 GET 和 POST 请求
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')  # 允许的请求头
+
+
+        return response
 
 
 flaskApp = getAppRegister("FlaskApp")
