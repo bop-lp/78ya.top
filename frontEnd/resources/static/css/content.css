@@ -1,7 +1,7 @@
 
 .dynamic-content {
     max-width: none;
-    margin: 0 30px;
+    margin: -40px 0px;
     /*background: white; !* 添加白色背景层 *!*/
     border-radius: 12px; /* 恢复圆角 */
     padding: 20px;
@@ -15,18 +15,18 @@
     box-shadow: 0 3px 15px rgba(0,0,0,0.15);
     margin: 20px 0;
     padding: 25px;
-    /*min-height: 220px;*/
+    min-height: 220px;
     position: relative;
 
     transition: transform 0.3s, box-shadow 0.3s;
 
-    /* 弹性内容布局 */
-    min-height: auto !important;
-    height: auto;
+    /*!* 弹性内容布局 *!*/
+    /*min-height: auto !important;*/
+    /*height: auto;*/
 
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*gap: 15px;*/
 
 }
 
@@ -45,18 +45,18 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
-.content-item img {
-    width: 100%;
-    /*height: 300px;*/
-    object-fit: cover;
-    border-radius: 8px;
-    margin-top: 15px;
+/*.content-item img {*/
+/*    width: 100%;*/
+/*    !*height: 300px;*!*/
+/*    object-fit: cover;*/
+/*    border-radius: 8px;*/
+/*    margin-top: 15px;*/
 
-    /* 图片自适应设置 */
-    height: auto; /* 移除固定高度 */
-    max-height: 400px; /* 防止图片过高 */
-    flex-shrink: 0; /* 禁止图片压缩 */
-}
+    /*!* 图片自适应设置 *!*/
+    /*height: auto; !* 移除固定高度 *!*/
+    /*max-height: 400px; !* 防止图片过高 *!*/
+    /*flex-shrink: 0; !* 禁止图片压缩 *!*/
+/*}*/
 
 .content-header {
     color: #ff4500;
@@ -174,13 +174,21 @@
     }
 
     .meta-info {
-        position: static;
+        /* position: static;
         text-align: left;
         margin-top: 10px;
 
         background: none;
         box-shadow: none;
+        padding: 0; */
+        position: absolute;
+        width: 1px;
+        height: 1px;
         padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
     }
     #contentContainer {
         border-left-width: 2px;

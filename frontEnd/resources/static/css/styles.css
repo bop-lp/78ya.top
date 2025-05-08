@@ -9,6 +9,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    background:  linear-gradient(135deg, rgba(151, 51, 255, 0.1) 0%, rgba(82, 106, 255, 0.1) 42%, rgba(17, 185, 255, 0.1) 100%);
+
 }
 
 #video-background {
@@ -22,9 +24,26 @@ body {
 }
 
 header {
-    background-color: rgba(255, 127, 80, 0.8);
+    /* background-color: rgba(255, 127, 80, 0.8); */
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* background:  linear-gradient(135deg, rgba(151, 51, 255, 0.1) 0%, rgba(82, 106, 255, 0.1) 42%, rgba(17, 185, 255, 0.1) 100%); */
+    /* text-shadow: 0 1px 0 #ccc, 0 2px 0 #b2b2b2, 0 3px 0 #999,0 4px 3px rgba(0,0,0,0.2); */
+    /* color: #00f3ff;
+    text-shadow:     
+        0 0 5px #00f3ff,
+        0 0 15px #00f3ff,
+        0 0 30px #00f3ff; */
+        background-image: linear-gradient(
+            to bottom, 
+            /* 从上到下 5 层渐变 */
+            rgba(255,127,80, 1) 0%,           /* 原始色完全不透明 */
+            rgba(255,115,70, 0.85) 20%,       /* 加深5% + 透明度85% */
+            rgba(255,95,50, 0.7) 40%,         /* 加深15% + 透明度70% */
+            rgba(255,75,30, 0.5) 60%,         /* 加深25% + 透明度50% */
+            rgba(255,55,10, 0.3) 80%,         /* 加深35% + 透明度30% */
+            rgba(255,35,0, 0) 100%            /* 完全透明深色底 */
+          );
 }
 
 .header-wrapper {
@@ -53,6 +72,7 @@ h1 {
 
 main {
     background: rgba(255, 255, 255, 0.15);
+    /* background:  linear-gradient(135deg, rgba(151, 51, 255, 0.1) 0%, rgba(82, 106, 255, 0.1) 42%, rgba(17, 185, 255, 0.1) 100%); */
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -104,6 +124,18 @@ footer {
     color: white;
     margin-top: auto;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    /* 底部固定 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* 渐变透明 */
+    background-image: linear-gradient(
+        to top,
+        rgba(255, 127, 80, 1) 0%,     /* 底部完全不透明 */
+        rgba(255, 127, 80, 0.2) 90%   /* 上方20%透明度 */
+      );
+      
 }
 
 .footer-content {
@@ -116,7 +148,7 @@ footer {
 
 .footer-item {
     display: flex;
-    align-items: center;
+    align-items: padding;
     gap: 8px;
 }
 
@@ -184,3 +216,44 @@ a:hover {
   margin: 1rem 0;
   font-size: 0.9em;
 }
+
+
+/* 顶部导航栏 */
+.top-nav {
+    --nav-bg: ;  /* 自行替换背景色 */
+    --text-color: white;
+    background: var(--nav-bg);
+    /* 新增容器居中相关属性 */
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+  }
+  
+  .nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto; /* 水平居中关键属性 */
+    gap: 8rem;
+    max-width: 1200px; /* 控制最大宽度保持可读性 */
+    justify-content: center; /* 内容居中 */
+  }
+  /* 保持原有其他样式不变 */
+  .nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: opacity 0.3s ease;
+    font-size: 1.1rem;
+  }
+  
+  /* ...其他原有样式保持不变... */
+  
+  /* 移动端适配调整 */
+  @media (max-width: 768px) {
+    .nav-list {
+      max-width: 100%;
+      padding: 0.8rem 1rem;
+      gap: 1rem;
+    }
+  }

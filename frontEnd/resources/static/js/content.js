@@ -88,7 +88,7 @@ function showError(message) {
     }, 5000);
 }
 
-document.querySelectorAll('.image-container img').forEach(img => {
+document.querySelectorAll('div img').forEach(img => {
     img.addEventListener('mouseenter', () => {
         img.style.transform = 'scale(1.05)';
     });
@@ -99,7 +99,7 @@ document.querySelectorAll('.image-container img').forEach(img => {
 
 
 // 渐进式加载优化
-document.querySelectorAll('.image-wrapper img').forEach(img => {
+document.querySelectorAll('div img').forEach(img => {
     // 监听加载完成
     img.onload = () => {
         img.style.opacity = 1;
@@ -111,3 +111,39 @@ document.querySelectorAll('.image-wrapper img').forEach(img => {
         img.classList.toggle('zoomed');
     });
 });
+
+document.getElementById('contentCONtainer').addEventListener('mouseover', (e) => {
+    if (e.targer.tagName === 'IMG') {
+        e.targer.style.transform = 'scale(1.05)';
+    }
+})
+
+function createOverlay(imgSrc) {
+    const overlay = document.createElement('div');
+    overlay.className = 'image-overlay';
+    overlay.innerHTML = `
+      <div class="overlay-background"></div>
+      <img src="${imgSrc}" class="zoomed-image">
+      <button class="close-btn">×</button>
+    `;
+    overlay.querySelector('.close-btn').addEventListener('click', () => {
+      document.body.removeChild(overlay);
+    });
+    document.body.appendChild(overlay);
+  }
+  
+  // 修改点击事件
+  img.addEventListener('click', () => createOverlay(img.src));
+
+  function throttle(func, delay) {
+    let lastCall = 0;
+    return function(...args) {
+      const now = Date.now();
+      if (now - lastCall >= delay) {
+        func.apply(this, args);
+        lastCall = now;
+      }
+    };
+  }
+  
+  window.addEventListener('scroll', throttle(scrollHandler, 200));
