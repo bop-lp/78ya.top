@@ -26,7 +26,7 @@ body {
 header {
     /* background-color: rgba(255, 127, 80, 0.8); */
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
     /* background:  linear-gradient(135deg, rgba(151, 51, 255, 0.1) 0%, rgba(82, 106, 255, 0.1) 42%, rgba(17, 185, 255, 0.1) 100%); */
     /* text-shadow: 0 1px 0 #ccc, 0 2px 0 #b2b2b2, 0 3px 0 #999,0 4px 3px rgba(0,0,0,0.2); */
     /* color: #00f3ff;
@@ -257,3 +257,14 @@ a:hover {
       gap: 1rem;
     }
   }
+
+
+.header-img {
+    position: absolute;
+    top: 0px;
+    left: 4%;
+}
+.header-img img {
+    height: 50%;
+    width: 50%;
+}

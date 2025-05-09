@@ -15,12 +15,13 @@
     <video id="video-background" autoplay muted loop>
         <source src="{{ url_for('static', filename='mp4/wallpaper.mp4') }}" type="video/mp4">
     </video>
-    {% include "includes/topNavigationBar.html"%}
+
     <header>
-        <div class="header-wrapper">
+    {% include "includes/topNavigationBar.html"%}
+        <!-- <div class="header-wrapper">
             <h1>朝歌夜弦的博客</h1>
             <div class="motto" id="animatedMotto"></div>
-        </div>
+        </div> -->
     </header>
 
     {% include "includes/content.html" %}
