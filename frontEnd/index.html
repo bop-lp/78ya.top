@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- index.html -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朝歌夜弦的博客</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="shortcut icon" href="static/ico/favicon.ico">
+    <link rel="stylesheet" href="static/css/content.css">
+    <link rel="stylesheet" href="static/css/contentx.css">
+    <link rel="stylesheet" href="static/css/hoverOverTheGallery.css">
+</head>
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="static/mp4/wallpaper.mp4" type="video/mp4">
+    </video>
+
+    <header>
+    <!-- topNavigationBar.html -->
+    <div class="header-img">
+        <img src="static/png/yzw.png" alt="yzw.png">
+    </div>
+    <nav class="top-nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#" class="nav-link">首页</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">博客</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">工具</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">关于</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <main>
+        <!-- 新增动态内容容器 -->
+        <section class="dynamic-content">
+            <div id="globalErrorContainer"></div>
+            <div id="contentContainer"></div>
+            <div id="loadingIndicator" style="margin-left:30px">
+                <div class="loader"></div>
+                <p>正在加载更多内容...</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="friendship-links">友情链接</div>
+        <div class="footer-content">
+            <div class="footer-item">
+                <a href="https://github.com/bop-lp" target="_blank">
+                    <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub">
+                    GitHub
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="https://beian.miit.gov.cn" target="_blank">
+                    <img src="https://www.miit.gov.cn/favicon.ico" alt="工信部备案">
+                    琼ICP备2025051221
+                </a>
+            </div>
+            <div class="footer-item">
+                <img src="https://mail.qq.com/favicon.ico" alt="QQ邮箱">
+                <a href="mailto:bop-lp@qq.com">bop-lp@qq.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/scripts.js"></script>
+    <script src="static/js/content.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
+</body>
+</html>
