@@ -99,18 +99,18 @@ document.querySelectorAll('div img').forEach(img => {
 
 
 // 渐进式加载优化
-document.querySelectorAll('div img').forEach(img => {
-    // 监听加载完成
-    img.onload = () => {
-        img.style.opacity = 1;
-        img.parentElement.style.background = 'none';
-    };
+// document.querySelectorAll('div img').forEach(img => {
+//     // 监听加载完成
+//     img.onload = () => {
+//         img.style.opacity = 1;
+//         img.parentElement.style.background = 'none';
+//     };
 
-    // 点击放大功能
-    img.addEventListener('click', () => {
-        img.classList.toggle('zoomed');
-    });
-});
+//     // 点击放大功能
+//     img.addEventListener('click', () => {
+//         img.classList.toggle('zoomed');
+//     });
+// });
 
 document.getElementById('contentCONtainer').addEventListener('mouseover', (e) => {
     if (e.targer.tagName === 'IMG') {

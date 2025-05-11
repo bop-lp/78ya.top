@@ -145,10 +145,10 @@ footer {
     gap: 8px;
 }
 
-.footer-item img {
+/* .footer-item img {
     width: 20px;
     height: 20px;
-}
+} */
 
 .friendship-links {
     text-align: center;
@@ -262,3 +262,8 @@ a:hover {
     height: 50%;
     width: 50%;
 }
+
+/* .footer-item-img img{
+    width: 80%;
+    height: 80%;
+} */
