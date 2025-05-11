@@ -18,4 +18,7 @@
     --root-text-color: white;
     /* 根元素文字颜色 */
     --h2-text-color: #ff4500;
+
+    /* a text color */
+    --a-text-color: rgb(255, 120, 120);
 }

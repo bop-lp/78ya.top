@@ -157,7 +157,8 @@ footer {
 }
 
 a {
-    color: white;
+    /* color: white; */
+    color: var(--a-text-color);
     text-decoration: none;
 }
 
