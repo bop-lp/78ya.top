@@ -48,13 +48,27 @@ def run(flaskApp):
     root_wed = root("", interfaceInfo={"root": {"methods": "GET", "forms": {}}})
     path = File.public.config.get("file", False)
 
+    @root_wed.wrapper("/about")
+    def about():
+        return render_template("about.html")
+
+
+    @root_wed.wrapper("/blog")
+    def blog():
+        return render_template("blog.html")
+
+    @root_wed.wrapper("/home")
+    def root():
+        return render_template("home.html")
+
+    @root_wed.wrapper("/tools")
+    def tools():
+        return render_template("tools.html")
+
     @root_wed.wrapper("/")
     def root():
-        return render_template("index.html")
+        return render_template("home.html")
 
-    @root_wed.wrapper("/posts")
-    def posts():
-        return '200'
 
     @root_wed.wrapper("/posts/<slug>")
     def show_post(slug):
@@ -66,9 +80,9 @@ def run(flaskApp):
         post.title = slug
         return render_template("post.html", post=post)
 
-    @root_wed.wrapper("/api/dmyiyan/api")
-    def dmyiyan_api():
-        return "你好世界", 200
+    # @root_wed.wrapper("/api/dmyiyan/api")
+    # def dmyiyan_api():
+    #     return "你好世界", 200
 
 
 flaskApp = getAppRegister("FlaskApp")

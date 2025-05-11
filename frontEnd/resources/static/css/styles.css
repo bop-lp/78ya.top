@@ -1,3 +1,5 @@
+@import url('variables.css');
+
 /* css/styles.css */
 body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -34,16 +36,7 @@ header {
         0 0 5px #00f3ff,
         0 0 15px #00f3ff,
         0 0 30px #00f3ff; */
-        background-image: linear-gradient(
-            to bottom, 
-            /* 从上到下 5 层渐变 */
-            rgba(255,127,80, 1) 0%,           /* 原始色完全不透明 */
-            rgba(255,115,70, 0.85) 20%,       /* 加深5% + 透明度85% */
-            rgba(255,95,50, 0.7) 40%,         /* 加深15% + 透明度70% */
-            rgba(255,75,30, 0.5) 60%,         /* 加深25% + 透明度50% */
-            rgba(255,55,10, 0.3) 80%,         /* 加深35% + 透明度30% */
-            rgba(255,35,0, 0) 100%            /* 完全透明深色底 */
-          );
+        background-image: var(--topGradient);
 }
 
 .header-wrapper {
@@ -98,7 +91,7 @@ main {
 
 .game-images img {
     border-radius: 10px;
-    border: 2px solid #ff7f50;
+    border: 2px solid var(--theme-colors);
     transition: transform 0.3s ease;
     max-width: 100%;
     height: auto;
@@ -121,7 +114,7 @@ main {
 footer {
     background-color: rgba(255, 127, 80, 0.8);
     padding: 20px;
-    color: white;
+    color: var(--root-text-color);
     margin-top: auto;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     /* 底部固定 */
@@ -152,10 +145,10 @@ footer {
     gap: 8px;
 }
 
-.footer-item img {
+/* .footer-item img {
     width: 20px;
     height: 20px;
-}
+} */
 
 .friendship-links {
     text-align: center;
@@ -164,7 +157,8 @@ footer {
 }
 
 a {
-    color: white;
+    /* color: white; */
+    color: var(--a-text-color);
     text-decoration: none;
 }
 
@@ -190,7 +184,7 @@ a:hover {
 
 /* Markdown内容样式 */
 .markdown-content {
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   padding: 2rem;
   background: rgba(255, 255, 255, 0.85);
@@ -199,7 +193,7 @@ a:hover {
 
 .markdown-content h1 {
   color: #ff4500;
-  border-bottom: 2px dashed #ff7f50;
+  border-bottom: 2px dashed var(--theme-colors);
   padding-bottom: 0.5rem;
 }
 
@@ -221,7 +215,7 @@ a:hover {
 /* 顶部导航栏 */
 .top-nav {
     --nav-bg: ;  /* 自行替换背景色 */
-    --text-color: white;
+    --text-color: var(--root-text-color);
     background: var(--nav-bg);
     /* 新增容器居中相关属性 */
     width: 100%;
@@ -268,3 +262,8 @@ a:hover {
     height: 50%;
     width: 50%;
 }
+
+/* .footer-item-img img{
+    width: 80%;
+    height: 80%;
+} */
