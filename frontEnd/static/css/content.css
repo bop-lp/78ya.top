@@ -1,3 +1,4 @@
+@import url(variables.css);
 
 .dynamic-content {
     max-width: none;
@@ -59,7 +60,7 @@
 /*}*/
 
 .content-header {
-    color: #ff4500;
+    color: var(--h2-text-color);
     margin-bottom: 10px;
     border-bottom: none !important; /* 移除原有分隔线 */
 }
